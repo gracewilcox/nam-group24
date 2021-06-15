@@ -1,0 +1,3 @@
+#+TITLE: nam-group24
+#+AUTHOR: Emma Griffin, Grace Wilcox, Niya Donova, Brandt Stevenson, Joshua Ryals
+Bank Account application using the Serverless Framework with AWS and DynamoDB.
