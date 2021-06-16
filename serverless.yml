@@ -8,5 +8,10 @@ provider:
   profile: serverlessUser
 
 functions:
-  hello:
-    handler: handler.hello
+  createAccount:
+    handler: lambdas/createAccount.handler
+    events:
+      - http:
+          path: create-account/{ID}
+          method: POST
+          cors: true
