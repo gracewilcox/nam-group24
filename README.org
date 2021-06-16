@@ -1,3 +1,22 @@
 #+TITLE: nam-group24
 #+AUTHOR: Emma Griffin, Grace Wilcox, Niya Donova, Brandt Stevenson, Joshua Ryals
 Bank Account application using the Serverless Framework with AWS and DynamoDB.
+* Contents
+ - [[#About][About]]
+ - [[#Installation][Installation]]
+ - [[#Usage][Usage]]
+* About
+:PROPERTIES:
+:CUSTOM_ID: about
+:END:
+* Installation
+:PROPERTIES:
+:CUSTOM_ID: installation
+:END:
+* Usage
+:PROPERTIES:
+:CUSTOM_ID: usage
+:END:
+#+BEGIN_SRC shell
+  $ serverless deploy
+#+END_SRC
