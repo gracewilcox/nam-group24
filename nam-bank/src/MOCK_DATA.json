@@ -1,1 +1,14 @@
-{"1": {"name": "Savings 1", "balance": 10250}, "2": {"name": "Savings 2", "balance": 23000}, "3": {"name": "Checking", "balance": 5.50} }
+{
+  "4729597439765": {
+    "name": "Savings 1",
+    "balance": 10250.34
+  },
+  "4729597439766": {
+    "name": "Savings 2",
+    "balance": 23000.23
+  },
+  "4729597439767": {
+    "name": "Checking",
+    "balance": 5.50
+  }
+}

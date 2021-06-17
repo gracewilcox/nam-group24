@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SimpleCard() {
+export default function SimpleCard({ name, number, type, balance }) {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
@@ -36,19 +36,31 @@ export default function SimpleCard() {
             <CardContent>
                 {/*acc number is hardcoded for now */}
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
+<<<<<<< HEAD
                     Account Number: 
         </Typography>
                 <div class="space1"></div>
                 <Typography variant="h5" component="h2">
                     name
+=======
+                    Account Number: {number}
+        </Typography>
+                <div class="space1"></div>
+                <Typography variant="h5" component="h2">
+                    Account Name: {name}
+>>>>>>> niya
                 </Typography>
                 {/*acc type is hardcoded for now */}
                 <Typography className={classes.pos} color="textSecondary">
-                    Account Type
+                    Account Type: {type}
         </Typography>
                 {/*acc balance is hardcoded for now */}
                 <Typography variant="body2" component="p">
+<<<<<<< HEAD
                     Balance:
+=======
+                    Balance: ${balance}
+>>>>>>> niya
                 </Typography>
             </CardContent>
             <div class="space"></div>

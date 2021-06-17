@@ -91,7 +91,7 @@ export default function SignInSide() {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
-                        <Link to={'../App'}>
+                        <Link to={'../home'}>
                         <Button 
                             fullWidth
                             variant="contained"

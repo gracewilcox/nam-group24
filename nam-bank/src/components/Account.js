@@ -8,9 +8,10 @@ import MOCK_DATA from '../MOCK_DATA.json';
 function Account() {
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [acctNum, setAcctNum] = useState(1);
-    const [balance, setBalance] = useState(0);
-    const [acctName, setAcctName] = useState("Savings #1");
+    const [acctNum, setAcctNum] = useState(4729597439765);
+    const [balance, setBalance] = useState(2305.43);
+    const [acctName, setAcctName] = useState("Checking #1");
+    const [acctType, setAcctType] = useState("Checking");
 
 
     useEffect(() => {
@@ -49,8 +50,23 @@ function Account() {
         </Menu>
           </div>
           <div class="card">
-              <Card/>
-        </div>          
+              <Card name={acctName} number={acctNum} type={acctType} balance={balance} />
+            </div>
+          {/*
+        <div>
+            <h1>
+                {acctName}
+            </h1>
+        </div>
+        <div>
+            <h1>
+                Current Balance
+            </h1>
+            <h2>
+                ${balance}
+            </h2>
+          </div>
+          */}
     </div>
     
   );
