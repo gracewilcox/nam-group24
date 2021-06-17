@@ -9,14 +9,22 @@ Bank Account application using the Serverless Framework with AWS and DynamoDB.
 :PROPERTIES:
 :CUSTOM_ID: about
 :END:
+Bank Account web application that displays checking and savings account information for users.
 * Installation
 :PROPERTIES:
 :CUSTOM_ID: installation
 :END:
+Requires that ~serverless~, ~aws~ / ~awscli~, and ~serverless-plugin-scripts~ be installed prior.
 * Usage
 :PROPERTIES:
 :CUSTOM_ID: usage
 :END:
+To initially launch the application, use
 #+BEGIN_SRC shell
   $ serverless deploy
 #+END_SRC
+Initial/default account data is stored in ~default-account.json~. To initialize the accounts database with this data, run
+#+BEGIN_SRC shell
+  $ serverless init-db
+#+END_SRC
+This requires that you have ~aws~ configured and installed on your machine.

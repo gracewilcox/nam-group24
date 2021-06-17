@@ -1,3 +1,5 @@
+# Change to user's credentials
+# org: users-credentials
 service: nam-group24
 frameworkVersion: '2'
 
@@ -5,7 +7,15 @@ provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
-  profile: serverlessUser
+  environment:
+    DYNAMODB_TABLE: accounts # Will create a dynamodb table named accounts
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:Scan
+        - dynamodb:UpdateItem
+        - dynamodb:PutItem
+      Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
   createAccount:
@@ -15,3 +25,27 @@ functions:
           path: test
           method: GET
           cors: true
+          
+resources:
+  Resources:
+    accounts:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: acct-id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: acct-id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+plugins:
+  - serverless-plugin-scripts
+
+custom:
+  scripts:
+    commands:
+      init-db: aws dynamodb put-item --table-name accounts --item file://default-account.json
