@@ -31,6 +31,19 @@ export default function SimpleCard({ name, number, type, balance }) {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
+    const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState("fake option");
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = (value) => {
+      setOpen(false);
+      setSelectedValue(value);
+    };
+  
+
     return (
         <Card className={classes.root}>
             <CardContent>
@@ -53,7 +66,8 @@ export default function SimpleCard({ name, number, type, balance }) {
             </CardContent>
             <div class="space"></div>
             <CardActions class="buttons">
-                <Button size="small">Add Transaction</Button>
+                <Button size="small" onClick={handleClickOpen}>Add Transaction</Button>
+                    <AddTransactionDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
                 <Button size="small">Delete Account</Button>
             </CardActions>
         </Card>

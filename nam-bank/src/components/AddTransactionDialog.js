@@ -7,26 +7,24 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function FormDialog() {
-    const [open, setOpen] = React.useState(false);
+export default function FormDialog({ onClose, selectedValue, open }) {
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const handleClose = () => {
-        setOpen(false);
+        onClose(selectedValue);
     };
+
+    const handleListItemClick = (value) => {
+        onClose(value);
+    };
+
     const handleSubmit = () => {
-        setOpen(false);
+        //setOpen(false);
         {/*need to add code to submit info via API*/ }
     };
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open form dialog
-      </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
                 <DialogContent>

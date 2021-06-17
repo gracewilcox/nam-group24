@@ -14,21 +14,30 @@ function Account() {
     const [acctType, setAcctType] = useState("Checking");
 
 
-    useEffect(() => {
+    useEffect( () => {
         //fetch api here, using mock data for now
-        let data = MOCK_DATA[acctNum]
-        setBalance(data.balance)
-    }, [acctNum])
+
+    }, [])
 
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     
-    const handleSelect = (accountNum, accountName) => {
+    const handleSelect = async (accountNum, accountName) => {
         setAnchorEl(null);
-        setAcctNum(accountNum);
-        setAcctName(accountName);
+
+        async function getBalance(num) {
+            const response = await fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db');
+		    let responseJson = await response.json();
+            return responseJson[1];
+        }
+        
+        let data = await getBalance(acctNum)
+        setBalance(data.balance);
+        setAcctName(data.name);
+        setAcctType(data.type);
+        console.log(data.balance)
     };
 
   return (
