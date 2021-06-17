@@ -1,14 +1,17 @@
-﻿import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+﻿import TextField from '@material-ui/core/TextField';
+import { Button, Menu, MenuItem } from '@material-ui/core';
+import { React, useState, useEffect } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function FormDialog({ onClose, selectedValue, open }) {
 
+export default function FormDialog({ onClose, selectedValue, open }) {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [type, setType] = useState("Deposit");
+    const [amount, setAmount] = useState(0);
 
     const handleClose = () => {
         onClose(selectedValue);
@@ -22,6 +25,14 @@ export default function FormDialog({ onClose, selectedValue, open }) {
         //setOpen(false);
         {/*need to add code to submit info via API*/ }
     };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleSelect = (type) => {
+        setAnchorEl(null);
+        setType(type);
+    };
 
     return (
         <div>
@@ -32,6 +43,21 @@ export default function FormDialog({ onClose, selectedValue, open }) {
                         To be filled with transaction options like transaction type and amount.
           </DialogContentText>
                     {/*add a menu with two options - deposit and withdrawal*/}
+                    <div>
+                        <Button style={{ backgroundColor: "white" }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                            Select Transaction Type
+        </Button>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={() => handleSelect(type)}
+                        >
+                            <MenuItem onClick={() => handleSelect("Deposit")}> Deposit </MenuItem>
+                            <MenuItem onClick={() => handleSelect("Withdrawal")}> Withdrawal </MenuItem>
+                        </Menu>
+                    </div>
                     <TextField
                         autoFocus
                         margin="dense"
