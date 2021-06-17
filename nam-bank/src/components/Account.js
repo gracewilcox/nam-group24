@@ -1,6 +1,7 @@
 import { Button, Menu, MenuItem } from '@material-ui/core';
 import { React, useState, useEffect }from 'react';
 import './Account.css';
+import Card from './Card';
 import MOCK_DATA from '../MOCK_DATA.json';
 
 
@@ -46,7 +47,11 @@ function Account() {
             <MenuItem onClick={ () => handleSelect(2, "Savings #2")}> Savings #2 </MenuItem>
             <MenuItem onClick={ () => handleSelect(3, "Checking")}> Checking </MenuItem>
         </Menu>
-        </div>
+          </div>
+          <div class="card">
+              <Card />
+              </div>
+          {/*
         <div>
             <h1>
                 {acctName}
@@ -59,7 +64,8 @@ function Account() {
             <h2>
                 ${balance}
             </h2>
-        </div>
+          </div>
+          */}
     </div>
     
   );
