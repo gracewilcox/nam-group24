@@ -2,6 +2,8 @@
     background-color: white;
 }
 .card {
-    margin-top: 100px;
-    margin-left: 455px;
+    display: flex;
+    padding-top: 50px;
+    align-items: center;
+    justify-content: center;
 }

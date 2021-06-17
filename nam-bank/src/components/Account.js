@@ -34,7 +34,7 @@ function Account() {
   return (
     <div >
         <div>
-        <Button style={{backgroundColor: "white"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <Button style={{backgroundColor: "white", marginTop: "20px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             Select Account
         </Button>
         <Menu
@@ -44,9 +44,9 @@ function Account() {
             open={Boolean(anchorEl)}
             onClose={() => handleSelect(acctNum, acctName)}
             >
-            <MenuItem onClick={ () => handleSelect(1, "Savings #1")}> Savings #1 </MenuItem>
-            <MenuItem onClick={ () => handleSelect(2, "Savings #2")}> Savings #2 </MenuItem>
-            <MenuItem onClick={ () => handleSelect(3, "Checking")}> Checking </MenuItem>
+            <MenuItem onClick={ () => handleSelect(4729597439765, "Savings #1")}> Savings #1 (4729597439765) </MenuItem>
+            <MenuItem onClick={ () => handleSelect(4729597439766, "Savings #2")}> Savings #2 (4729597439766) </MenuItem>
+            <MenuItem onClick={ () => handleSelect(4729597439767, "Checking")}> Checking (4729597439767) </MenuItem>
         </Menu>
           </div>
           <div class="card">

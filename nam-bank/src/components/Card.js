@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
     bullet: {
         display: 'inline-block',
-        margin: '0 2px',
+        margin: '0px',
         transform: 'scale(0.8)',
     },
     title: {
@@ -36,19 +36,11 @@ export default function SimpleCard({ name, number, type, balance }) {
             <CardContent>
                 {/*acc number is hardcoded for now */}
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-<<<<<<< HEAD
-                    Account Number: 
-        </Typography>
-                <div class="space1"></div>
-                <Typography variant="h5" component="h2">
-                    name
-=======
                     Account Number: {number}
         </Typography>
                 <div class="space1"></div>
                 <Typography variant="h5" component="h2">
                     Account Name: {name}
->>>>>>> niya
                 </Typography>
                 {/*acc type is hardcoded for now */}
                 <Typography className={classes.pos} color="textSecondary">
@@ -56,11 +48,7 @@ export default function SimpleCard({ name, number, type, balance }) {
         </Typography>
                 {/*acc balance is hardcoded for now */}
                 <Typography variant="body2" component="p">
-<<<<<<< HEAD
-                    Balance:
-=======
                     Balance: ${balance}
->>>>>>> niya
                 </Typography>
             </CardContent>
             <div class="space"></div>
