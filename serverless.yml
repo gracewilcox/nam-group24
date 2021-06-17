@@ -29,7 +29,7 @@ package:
 
 custom:
   s3Sync:
-    - bucketName: groupx24project-bucket
+    - bucketName: groupx24project-bucket2
       localDir: data-upload # make folder name data-upload for directory
   scripts:
     commands:
@@ -49,7 +49,7 @@ resources:
     BucketUpload:
       Type: AWS::S3::Bucket
       Properties:
-          BucketName: groupx24project-bucket
+          BucketName: groupx24project-bucket2
     accounts:
       Type: "AWS::DynamoDB::Table"
       Properties:
