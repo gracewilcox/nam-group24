@@ -19,7 +19,7 @@ export default function FormDialog({ onClose, selectedValue, open }) {
     };
 
     const handleSubmit = () => {
-        //setOpen(false);
+        onClose(selectedValue);
         {/*need to add code to submit info via API*/ }
     };
 
@@ -30,7 +30,7 @@ export default function FormDialog({ onClose, selectedValue, open }) {
                 <DialogContent>
                     <DialogContentText>
                         To be filled with transaction options like transaction type and amount.
-          </DialogContentText>
+                </DialogContentText>
                     {/*add a menu with two options - deposit and withdrawal*/}
                     <TextField
                         autoFocus

@@ -13,10 +13,19 @@ function Account() {
     const [acctName, setAcctName] = useState("Checking #1");
     const [acctType, setAcctType] = useState("Checking");
 
+    const [accounts, setAccounts] = useState([]);
+
+
 
     useEffect( () => {
         //fetch api here, using mock data for now
-
+        fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db').then( (response) => {
+            //setAccounts(response.json());
+            response.json().then( (data) => {
+                setAccounts(data);
+                console.log(data)
+            });
+        })
     }, [])
 
 
@@ -26,6 +35,7 @@ function Account() {
     
     const handleSelect = async (accountNum, accountName) => {
         setAnchorEl(null);
+        console.log(accounts)
 
         async function getBalance(num) {
             const response = await fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db');
@@ -37,7 +47,7 @@ function Account() {
         setBalance(data.balance);
         setAcctName(data.name);
         setAcctType(data.type);
-        console.log(data.balance)
+        setAcctNum(data.number);
     };
 
   return (
@@ -53,9 +63,12 @@ function Account() {
             open={Boolean(anchorEl)}
             onClose={() => handleSelect(acctNum, acctName)}
             >
-            <MenuItem onClick={ () => handleSelect(4729597439765, "Savings #1")}> Savings #1 (4729597439765) </MenuItem>
-            <MenuItem onClick={ () => handleSelect(4729597439766, "Savings #2")}> Savings #2 (4729597439766) </MenuItem>
-            <MenuItem onClick={ () => handleSelect(4729597439767, "Checking")}> Checking (4729597439767) </MenuItem>
+                {accounts.map( (account, acctIndex) => {
+                    const { acct_id, balance, is_checking, name } = account;
+                    return (
+                        <MenuItem onClick={ () => handleSelect(acct_id, name)}> {name} ({acct_id}) </MenuItem>
+                    )
+                })}
         </Menu>
           </div>
           <div class="card">
