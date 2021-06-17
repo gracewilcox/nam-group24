@@ -2,10 +2,10 @@
     justify-content: center
 }
 .space {
-    margin-top: 50px;
+    padding-top: 50px;
 }
 .space1 {
-    margin-top: 25px;
+    padding-top: 25px;
 }
 .buttons {
     justify-items: center;

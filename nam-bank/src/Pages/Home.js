@@ -1,13 +1,13 @@
 ﻿import Account from '../components/Account.js';
 
-//import './Home.css';
+import './Home.css';
 
 function Home() {
     return (
 
-      <div className="App">
-        <h1>
-            This is the home page
+      <div >
+        <h1 className="welcome">
+            Welcome, Customer name
         </h1>
         <Account/>
       </div>

@@ -14,27 +14,36 @@ function Account() {
     const [acctType, setAcctType] = useState("Checking");
 
 
-    useEffect(() => {
+    useEffect( () => {
         //fetch api here, using mock data for now
-        let data = MOCK_DATA[acctNum]
-        setBalance(data.balance)
-    }, [acctNum])
+
+    }, [])
 
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     
-    const handleSelect = (accountNum, accountName) => {
+    const handleSelect = async (accountNum, accountName) => {
         setAnchorEl(null);
-        setAcctNum(accountNum);
-        setAcctName(accountName)
+
+        async function getBalance(num) {
+            const response = await fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db');
+		    let responseJson = await response.json();
+            return responseJson[1];
+        }
+        
+        let data = await getBalance(acctNum)
+        setBalance(data.balance);
+        setAcctName(data.name);
+        setAcctType(data.type);
+        console.log(data.balance)
     };
 
   return (
     <div >
         <div>
-        <Button style={{backgroundColor: "white"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <Button style={{backgroundColor: "white", marginTop: "20px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             Select Account
         </Button>
         <Menu
@@ -44,14 +53,14 @@ function Account() {
             open={Boolean(anchorEl)}
             onClose={() => handleSelect(acctNum, acctName)}
             >
-            <MenuItem onClick={ () => handleSelect(1, "Savings #1")}> Savings #1 </MenuItem>
-            <MenuItem onClick={ () => handleSelect(2, "Savings #2")}> Savings #2 </MenuItem>
-            <MenuItem onClick={ () => handleSelect(3, "Checking")}> Checking </MenuItem>
+            <MenuItem onClick={ () => handleSelect(4729597439765, "Savings #1")}> Savings #1 (4729597439765) </MenuItem>
+            <MenuItem onClick={ () => handleSelect(4729597439766, "Savings #2")}> Savings #2 (4729597439766) </MenuItem>
+            <MenuItem onClick={ () => handleSelect(4729597439767, "Checking")}> Checking (4729597439767) </MenuItem>
         </Menu>
           </div>
           <div class="card">
               <Card name={acctName} number={acctNum} type={acctType} balance={balance} />
-              </div>
+            </div>
           {/*
         <div>
             <h1>
