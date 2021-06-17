@@ -1,5 +1,5 @@
 import { Button, Menu, MenuItem } from '@material-ui/core';
-import { React, useState, useEffect }from 'react';
+import { React, useState, useEffect } from 'react';
 import './Account.css';
 import Card from './Card';
 import MOCK_DATA from '../MOCK_DATA.json';
@@ -13,55 +13,68 @@ function Account() {
     const [acctName, setAcctName] = useState("Checking #1");
     const [acctType, setAcctType] = useState("Checking");
 
+    const [accounts, setAccounts] = useState([]);
 
-    useEffect( () => {
+
+
+    useEffect(() => {
         //fetch api here, using mock data for now
-
+        fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db').then((response) => {
+            //setAccounts(response.json());
+            response.json().then((data) => {
+                setAccounts(data);
+                console.log(data)
+            });
+        })
     }, [])
 
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    
+
     const handleSelect = async (accountNum, accountName) => {
         setAnchorEl(null);
+        console.log(accounts)
 
         async function getBalance(num) {
             const response = await fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db');
-		    let responseJson = await response.json();
+            let responseJson = await response.json();
             return responseJson[1];
         }
-        
+
         let data = await getBalance(acctNum)
         setBalance(data.balance);
         setAcctName(data.name);
         setAcctType(data.type);
-        console.log(data.balance)
+        setAcctNum(data.number);
     };
 
-  return (
-    <div >
-        <div>
-        <Button style={{backgroundColor: "white", marginTop: "20px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                  {acctName} ({acctNum})
+    return (
+        <div >
+            <div>
+                <Button style={{ backgroundColor: "white", marginTop: "20px" }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    Select Account
         </Button>
-        <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={() => handleSelect(acctNum, acctName)}
-            >
-                  <MenuItem onClick={() => handleSelect(4729597439765, "Savings #1")}> Savings #1 (4729597439765) </MenuItem>
-                  <MenuItem onClick={() => handleSelect(4729597439766, "Savings #2")}> Savings #2 (4729597439766) </MenuItem>
-                  <MenuItem onClick={() => handleSelect(4729597439767, "Checking")}> Checking (4729597439767) </MenuItem>
-        </Menu>
-          </div>
-          <div class="card">
-              <Card name={acctName} number={acctNum} type={acctType} balance={balance} />
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={() => handleSelect(acctNum, acctName)}
+                >
+                    {accounts.map((account, acctIndex) => {
+                        const { acct_id, balance, is_checking, name } = account;
+                        return (
+                            <MenuItem onClick={() => handleSelect(acct_id, name)}> {name} ({acct_id}) </MenuItem>
+                        )
+                    })}
+                </Menu>
             </div>
-          {/*
+            <div class="card">
+                <Card name={acctName} number={acctNum} type={acctType} balance={balance} />
+            </div>
+            {/*
         <div>
             <h1>
                 {acctName}
@@ -76,9 +89,9 @@ function Account() {
             </h2>
           </div>
           */}
-    </div>
-    
-  );
+        </div>
+
+    );
 }
 
 export default Account;
