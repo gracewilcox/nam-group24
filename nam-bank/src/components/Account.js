@@ -50,7 +50,7 @@ function Account() {
         </Menu>
           </div>
           <div class="card">
-              <Card />
+              <Card/>
               </div>
           {/*
         <div>
