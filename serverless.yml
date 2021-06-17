@@ -5,10 +5,10 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: python3.6
   lambdaHashingVersion: 20201221
   environment:
-    DYNAMODB_TABLE: accounts # Will create a dynamodb table named accounts
+    DYNAMODB_TABLE: accnts # Will create a dynamodb table named accounts
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -20,6 +20,13 @@ provider:
 functions: # not yet in use
   hello:
     handler: handler.hello
+  getDB:
+    handler: backend/get_accounts.handler
+    events:
+      - http:
+          path: db
+          method: get
+          cors: true
 
 resources:
   Resources:
@@ -28,10 +35,10 @@ resources:
       Properties:
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
         AttributeDefinitions:
-          - AttributeName: acct-id
+          - AttributeName: acct_id
             AttributeType: N
         KeySchema:
-          - AttributeName: acct-id
+          - AttributeName: acct_id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -43,4 +50,7 @@ plugins:
 custom:
   scripts:
     commands:
-      init-db: aws dynamodb put-item --table-name accounts --item file://default-account.json
+      init-db: aws dynamodb put-item --table-name ${self:provider.environment.DYNAMODB_TABLE} --item file://default-account.json
+
+package:
+  individually: true
