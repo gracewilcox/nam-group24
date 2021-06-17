@@ -1,14 +1,14 @@
 {
-  "acct-id": {
-    "N": "1234567"
-  },
-  "balance": {
-    "N": "100.00"
-  },
-  "is_checking": {
-    "BOOL": true
-  },
-  "name": {
-    "S": "Grace Hopper"
+    "acct-id": {
+      "N": "1234567"
+    },
+    "balance": {
+      "N": "100.00"
+    },
+    "is_checking": {
+      "BOOL": true
+    },
+    "name": {
+      "S": "Grace Hopper"
+    }
   }
-}

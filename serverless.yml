@@ -1,11 +1,12 @@
-# Change to user's credentials
-# org: users-credentials
-service: nam-group24
+# backend yml with db info added
+
+service: g24project
+
 frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   lambdaHashingVersion: 20201221
   environment:
     DYNAMODB_TABLE: accounts # Will create a dynamodb table named accounts
@@ -16,13 +17,39 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:PutItem
       Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+  profile: serverlessUser
 
-functions: # not yet in use
-  hello:
-    handler: handler.hello
+plugins:
+  - serverless-s3-sync
+  - serverless-webpack
+  - serverless-plugin-scripts
+
+package:
+  individually: true
+
+custom:
+  s3Sync:
+    - bucketName: groupx24project-bucket
+      localDir: data-upload # make folder name data-upload for directory
+  scripts:
+    commands:
+      init-db: aws dynamodb put-item --table-name accounts --item file://default-account.json
+
+functions:
+  getUser:
+    handler: lambdas/getUser.handler
+    events:
+      - http:
+          path: get-user/{ID}
+          method: GET
+          cors: true
 
 resources:
   Resources:
+    BucketUpload:
+      Type: AWS::S3::Bucket
+      Properties:
+          BucketName: groupx24project-bucket
     accounts:
       Type: "AWS::DynamoDB::Table"
       Properties:
@@ -37,10 +64,3 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
 
-plugins:
-  - serverless-plugin-scripts
-
-custom:
-  scripts:
-    commands:
-      init-db: aws dynamodb put-item --table-name accounts --item file://default-account.json
