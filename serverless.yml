@@ -12,6 +12,6 @@ functions:
     handler: lambdas/createAccount.handler
     events:
       - http:
-          path: create-account/{ID}
-          method: POST
+          path: test
+          method: GET
           cors: true

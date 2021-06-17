@@ -31,12 +31,15 @@ const Responses = {
 }
 
 exports.handler = async (event) => {
+    console.log('TESTING')
+    
     if (!event.pathParameters) {
         return Responses._400({message: 'Missing parameters'})
     }
 
     try {
         // create account in dynamo
+        console.log('testing')
         console.log(event.pathParameters)
         return Responses._200({message: 'Success'})
     }
