@@ -27,6 +27,17 @@ functions: # not yet in use
           path: db
           method: get
           cors: true
+  getAcct:
+    handler: backend/get_account.handler
+    events:
+      - http:
+          path: db/{acct_id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                acct_id: true
 
 resources:
   Resources:
