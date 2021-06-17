@@ -5,14 +5,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import './Card.css';
+import AddTransactionDialog from './AddTransactionDialog';
 
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
         maxWidth: 350,
-        height: 300
+        height: 320
     },
     bullet: {
         display: 'inline-block',
@@ -33,16 +33,16 @@ export default function SimpleCard({ name, number, type, balance }) {
 
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState("fake option");
-  
+
     const handleClickOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
+
     const handleClose = (value) => {
-      setOpen(false);
-      setSelectedValue(value);
+        setOpen(false);
+        setSelectedValue(value);
     };
-  
+
 
     return (
         <Card className={classes.root}>
@@ -50,7 +50,7 @@ export default function SimpleCard({ name, number, type, balance }) {
                 {/*acc number is hardcoded for now */}
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     Account Number: {number}
-        </Typography>
+                </Typography>
                 <div class="space1"></div>
                 <Typography variant="h5" component="h2">
                     Account Name: {name}
@@ -58,7 +58,7 @@ export default function SimpleCard({ name, number, type, balance }) {
                 {/*acc type is hardcoded for now */}
                 <Typography className={classes.pos} color="textSecondary">
                     Account Type: {type}
-        </Typography>
+                </Typography>
                 {/*acc balance is hardcoded for now */}
                 <Typography variant="body2" component="p">
                     Balance: ${balance}
@@ -67,7 +67,7 @@ export default function SimpleCard({ name, number, type, balance }) {
             <div class="space"></div>
             <CardActions class="buttons">
                 <Button size="small" onClick={handleClickOpen}>Add Transaction</Button>
-                    <AddTransactionDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                <AddTransactionDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
                 <Button size="small">Delete Account</Button>
             </CardActions>
         </Card>
