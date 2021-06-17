@@ -45,7 +45,7 @@ export default function FormDialog({ onClose, selectedValue, open }) {
                     {/*add a menu with two options - deposit and withdrawal*/}
                     <div>
                         <Button style={{ backgroundColor: "white" }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                            Select Transaction Type
+                            {type}
         </Button>
                         <Menu
                             id="simple-menu"
