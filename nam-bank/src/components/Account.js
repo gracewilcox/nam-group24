@@ -8,7 +8,7 @@ import MOCK_DATA from '../MOCK_DATA.json';
 function Account() {
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [acctNum, setAcctNum] = useState(4729597439765);
+    const [acctNum, setAcctNum] = useState("1234567");
     const [balance, setBalance] = useState(2305.43);
     const [acctName, setAcctName] = useState("Checking #1");
     const [acctType, setAcctType] = useState(false);
