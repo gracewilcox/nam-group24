@@ -49,15 +49,15 @@ export default function SimpleCard({ name, number, type, balance }) {
             <CardContent>
                 {/*acc number is hardcoded for now */}
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Account Number: {number}
+                    Account Number: ***{number.slice(-4)}
                 </Typography>
                 <div class="space1"></div>
                 <Typography variant="h5" component="h2">
-                    Account Name: {name}
+                    {name}
                 </Typography>
                 {/*acc type is hardcoded for now */}
                 <Typography className={classes.pos} color="textSecondary">
-                    Account Type: {type}
+                    Account Type: {type ? "Checking" : "Savings"}
                 </Typography>
                 {/*acc balance is hardcoded for now */}
                 <Typography variant="body2" component="p">

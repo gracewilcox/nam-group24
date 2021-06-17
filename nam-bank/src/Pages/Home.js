@@ -7,7 +7,7 @@ function Home() {
 
       <div >
         <h1 className="welcome">
-            Welcome, Customer name
+            Welcome, Josh
         </h1>
         <Account/>
       </div>

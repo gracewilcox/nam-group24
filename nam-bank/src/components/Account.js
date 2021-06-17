@@ -11,7 +11,7 @@ function Account() {
     const [acctNum, setAcctNum] = useState(4729597439765);
     const [balance, setBalance] = useState(2305.43);
     const [acctName, setAcctName] = useState("Checking #1");
-    const [acctType, setAcctType] = useState("Checking");
+    const [acctType, setAcctType] = useState(false);
 
     const [accounts, setAccounts] = useState([]);
 
@@ -38,16 +38,18 @@ function Account() {
         console.log(accounts)
 
         async function getBalance(num) {
-            const response = await fetch('https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db');
+            console.log(num)
+            const response = await fetch(`https://snd9r2dic5.execute-api.us-east-1.amazonaws.com/dev/db/${num}`);
             let responseJson = await response.json();
-            return responseJson[1];
+            console.log(responseJson)
+            return responseJson;
         }
 
-        let data = await getBalance(acctNum)
+        let data = await getBalance(accountNum)
         setBalance(data.balance);
         setAcctName(data.name);
-        setAcctType(data.type);
-        setAcctNum(data.number);
+        setAcctType(data.is_checking);
+        setAcctNum(data.acct_id);
     };
 
     return (
