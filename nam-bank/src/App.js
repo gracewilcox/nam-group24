@@ -6,16 +6,13 @@ import './App.css';
 
 function App() {
     return (
-      <Router>
-            <div className="App">
-              <h>
-                This is our banking app
-              </h>
-              <Account/>
-            </div>
+
+      <div className="App">
+        <Router>
             <Route path="/" exact component={SignIn} />
-            <Route path="/home" component={App} />
+            <Route path="/home" component={Home} />
         </Router>
+      </div>
   );
 }
 
