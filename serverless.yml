@@ -22,10 +22,10 @@ functions:
     handler: lambdas/createAccount.handler
     events:
       - http:
-          path: test
+          path: create-account/{ID}
           method: GET
           cors: true
-          
+
 resources:
   Resources:
     accounts:
