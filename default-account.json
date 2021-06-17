@@ -1,14 +1,14 @@
 {
-    "acct-id": {
-      "N": "1234567"
+    "acct_id": {
+      "N": "2234567"
     },
     "balance": {
       "N": "100.00"
     },
     "is_checking": {
-      "BOOL": true
+      "BOOL": false
     },
     "name": {
-      "S": "Grace Hopper"
+      "S": "Drace Hopper"
     }
   }

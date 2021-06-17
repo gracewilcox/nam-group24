@@ -9,7 +9,7 @@ provider:
   runtime: nodejs14.x
   lambdaHashingVersion: 20201221
   environment:
-    DYNAMODB_TABLE: accounts # Will create a dynamodb table named accounts
+    DYNAMODB_TABLE: bankaccounts # Will create a dynamodb table 
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -33,32 +33,39 @@ custom:
       localDir: data-upload # make folder name data-upload for directory
   scripts:
     commands:
-      init-db: aws dynamodb put-item --table-name accounts --item file://default-account.json
+      init-db: aws dynamodb put-item --table-name bankaccounts --item file://default-account.json
 
 functions:
   getUser:
-    handler: lambdas/getUser.handler
+    handler: lambdas/endpoints/getUser.handler
     events:
       - http:
           path: get-user/{ID}
           method: GET
           cors: true
+  getPS:
+    handler: lambdas/endpoints/getPS.handler
+    events:
+      - http:
+          path: get-PS/{ID}
+          method: GET
+          cors: true
 
 resources:
   Resources:
-    BucketUpload:
-      Type: AWS::S3::Bucket
-      Properties:
-          BucketName: groupx24project-bucket2
-    accounts:
+    # BucketUpload:
+    #  Type: AWS::S3::Bucket
+    #  Properties:
+    #      BucketName: groupx24project-bucket2
+    bankaccounts:
       Type: "AWS::DynamoDB::Table"
       Properties:
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
         AttributeDefinitions:
-          - AttributeName: acct-id
+          - AttributeName: acct_id
             AttributeType: N
         KeySchema:
-          - AttributeName: acct-id
+          - AttributeName: acct_id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
