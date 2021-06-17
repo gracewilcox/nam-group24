@@ -36,11 +36,11 @@ export default function SimpleCard() {
             <CardContent>
                 {/*acc number is hardcoded for now */}
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Account Number: ******4344
+                    Account Number: 
         </Typography>
                 <div class="space1"></div>
                 <Typography variant="h5" component="h2">
-                    Account Name
+                    name
                 </Typography>
                 {/*acc type is hardcoded for now */}
                 <Typography className={classes.pos} color="textSecondary">
@@ -48,7 +48,7 @@ export default function SimpleCard() {
         </Typography>
                 {/*acc balance is hardcoded for now */}
                 <Typography variant="body2" component="p">
-                    Balance: $2,532.45
+                    Balance:
                 </Typography>
             </CardContent>
             <div class="space"></div>

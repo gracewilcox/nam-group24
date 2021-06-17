@@ -12,6 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link as LogIn } from "react-router-dom";
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -90,13 +93,13 @@ export default function SignInSide() {
                         />
                         <Link to={'../App'}>
                         <Button 
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
-                            className={classes.submit}
                         >
+                            <LogIn style={{width:'100%', color:'white' }} to='/home'>
                             Sign In
+                            </LogIn>
             </Button>
                         </Link>
                         <Grid container>

@@ -27,7 +27,7 @@ function Account() {
     const handleSelect = (accountNum, accountName) => {
         setAnchorEl(null);
         setAcctNum(accountNum);
-        setAcctName(accountName)
+        setAcctName(accountName);
     };
 
   return (
@@ -50,22 +50,7 @@ function Account() {
           </div>
           <div class="card">
               <Card/>
-              </div>
-          {/*
-        <div>
-            <h1>
-                {acctName}
-            </h1>
-        </div>
-        <div>
-            <h1>
-                Current Balance
-            </h1>
-            <h2>
-                ${balance}
-            </h2>
-          </div>
-          */}
+        </div>          
     </div>
     
   );
