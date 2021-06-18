@@ -17,9 +17,7 @@ provider:
         - dynamodb:PutItem
       Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
-functions: # not yet in use
-  hello:
-    handler: handler.hello
+functions:
   getDB:
     handler: backend/get_accounts.handler
     events:
@@ -38,6 +36,21 @@ functions: # not yet in use
             parameters:
               paths:
                 acct_id: true
+  transact:
+    handler: backend/transaction.handler
+    events:
+      - http:
+          path: transact
+          method: put
+          cors: true
+          private: false
+          request:
+            template:
+              application/json: >
+                {
+                "acct_id" : "$input.params('acct_id')",
+                "amount": "$input.params('amount')"
+                }
 
 resources:
   Resources:
